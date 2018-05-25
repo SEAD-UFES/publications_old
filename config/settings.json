@@ -1,4 +1,6 @@
 [
     {"key": "port", "value": 3000},
-    {"key": "dbUri", "value": "localhost/publications"}
+    {"key": "dbUri", "value": "localhost/publications"},
+    {"key": "userApiUri", "value": "/v1/users"},
+    {"key": "errorsUri", "value": "/v1/errors"}
 ]
