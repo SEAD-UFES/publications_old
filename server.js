@@ -1,6 +1,5 @@
 const http = require('http');
 const app = require('./config/express');
-console.log(app.get('dbUri'));
 require('./config/database')(app.get('dbUri'));
 
 
