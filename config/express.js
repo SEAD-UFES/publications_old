@@ -15,7 +15,7 @@ settings.forEach(conf => {
 
 consign({cwd: 'app'})
     .include('helpers')
-    .include('models')
+    .then('models')
     .then('api')
     .then('routes')
     .into(app);
