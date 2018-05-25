@@ -1,0 +1,4 @@
+[
+    {"key": "port", "value": 3000},
+    {"key": "dbUri", "value": "localhost/publications"}
+]
