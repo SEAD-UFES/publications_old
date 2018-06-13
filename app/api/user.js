@@ -17,6 +17,8 @@ module.exports = app => {
                         href: app.get('userApiUri') + '/' + user._id
                     }
                     user.save();
+                    user = user.toObject();
+                    delete user.password;
                     res.status(201).json({
                         userMessage: "Usuário criado com sucesso",
                         user
@@ -29,6 +31,10 @@ module.exports = app => {
 
     api.list = (req, res) => {
         console.log('Teste 2');
+    }
+
+    api.me = (req, res) => {
+        
     }
 
     return api;
