@@ -3,6 +3,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const consign = require('consign');
 const settings = require('./settings.json');
+const secrets = require('./secrets.json');
 
 //Middlewares
 app.use(express.static('./public'));
@@ -13,9 +14,16 @@ settings.forEach(conf => {
     app.set(conf.key, conf.value);
 });
 
+//Load secrets file
+secrets.forEach(secret => {
+    app.set(secret.key, secret.value);
+});
+
+
 consign({cwd: 'app'})
     .include('helpers')
-    .include('models')
+    .then('models')
+    .then('passport')
     .then('api')
     .then('routes')
     .into(app);
