@@ -26,6 +26,7 @@ consign({cwd: 'app'})
     .then('passport')
     .then('api')
     .then('routes')
+    .then('swagger')
     .into(app);
 
 module.exports = app;
