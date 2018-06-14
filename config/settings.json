@@ -3,5 +3,6 @@
     {"key": "dbUri", "value": "localhost/publications"},
     {"key": "userApiUri", "value": "/v1/users"},
     {"key": "authApiUri", "value": "/v1/auth"},
-    {"key": "errorsUri", "value": "/v1/errors"}
+    {"key": "errorsUri", "value": "/v1/errors"},
+    {"key": "docsUri", "value": "/v1/api-docs"}
 ]
