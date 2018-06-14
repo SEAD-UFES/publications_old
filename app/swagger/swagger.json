@@ -1,0 +1,128 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "description": "This is the official api documentation of the services offered by publication system of the SEAD / UFES.",
+      "version": "1.0.0",
+      "title": "Publications API (SEAD/UFES)",
+      "contact": {
+        "email": "suporte.sead@ufes.br"
+      },
+      "license": {
+        "name": "MIT",
+        "url": "https://opensource.org/licenses/MIT"
+      }
+    },
+    "host": "172.30.5.2:3000",
+    "basePath": "/v1",
+    "tags": [
+      {
+        "name": "auth",
+        "description": "Everything about Auth api"
+      }
+    ],
+    "schemes": [
+      "http"
+    ],
+    "paths": {
+      "/auth": {
+        "post": {
+          "tags": [
+            "auth"
+          ],
+          "summary": "User authentication API",
+          "description": "This will generate authentication token that you have to put into header 'X-Access-Token' to get allowed in some api's.",
+          "operationId": "authenticate",
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Username private information to authenticate",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/UserLogin"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Login Success.",
+              "schema": {
+                "$ref": "#/definitions/LoginSuccessMessage"
+              }
+            },
+            "404": {
+              "description": "Authentication failure with provide informations"
+            },
+            "500": {
+              "description": "Internal server error",
+              "schema": {
+                "$ref": "#/definitions/ErrorMessage"
+              }
+            }
+          }
+        }
+      }
+    },
+    "securityDefinitions": {
+      "api_key": {
+        "type": "apiKey",
+        "name": "api_key",
+        "in": "header"
+      }
+    },
+    "definitions": {
+      "UserLogin": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "User email"
+          },
+          "password": {
+            "type": "string",
+            "description": "User password"
+          }
+        }
+      },
+      "LoginSuccessMessage": {
+        "type": "object",
+        "properties": {
+          "userMessage": {
+            "type": "string",
+            "description": "Success Login Message"
+          },
+          "token": {
+            "type": "string",
+            "description": "A token to be used in request header X-Access-Token"
+          }
+        }
+      },
+      "ErrorMessage": {
+        "type": "object",
+        "properties": {
+          "errorCode": {
+            "type": "string",
+            "description": "A code of this error."
+          },
+          "moreInfo": {
+            "type": "string",
+            "description": "A URL to documentation and instructions for this error"
+          },
+          "userMessage": {
+            "type": "string",
+            "description": "Description of this error to show to the common user"
+          },
+          "devMessage": {
+            "type": "string",
+            "description": "A full object error description to be presented to developers"
+          }
+        }
+      }
+    }
+  }
